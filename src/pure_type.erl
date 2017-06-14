@@ -35,15 +35,15 @@
 -export([crdt_size/1]).
 
 %% Define some initial types.
--type pure_type() :: pure_awset |
-                     pure_dwflag |
-                     pure_ewflag |
-                     pure_gcounter |
-                     pure_gset |
-                     pure_mvregister |
-                     pure_pncounter |
-                     pure_rwset |
-                     pure_twopset.
+-type pure_type() :: ?PURE_AWSET_TYPE |
+                     ?PURE_DWFLAG_TYPE |
+                     ?PURE_EWFLAG_TYPE |
+                     ?PURE_GCOUNTER_TYPE |
+                     ?PURE_GSET_TYPE |
+                     ?PURE_MVREGISTER_TYPE |
+                     ?PURE_PNCOUNTER_TYPE |
+                     ?PURE_RWSET_TYPE |
+                     ?PURE_TWOPSET_TYPE.
 -type crdt() :: {pure_type(), payload()}.
 -type payload() :: {polog(), term()}.
 -type polog() :: orddict:orddict().
@@ -64,16 +64,6 @@ reset(VV, {Type, {POLog, _Crystal}}) ->
         POLog
     ),
     {Type, {POLog1, Crystal}}.
-
--define(AWSET_TYPE, pure_awset).
--define(DWFLAG_TYPE, pure_dwflag).
--define(EWFLAG_TYPE, pure_ewflag).
--define(GCOUNTER_TYPE, pure_gcounter).
--define(GSET_TYPE, pure_gset).
--define(MVREGISTER_TYPE, pure_mvregister).
--define(PNCOUNTER_TYPE, pure_pncounter).
--define(RWSET_TYPE, pure_rwset).
--define(TWOPSET_TYPE, pure_twopset).
 
 %% @doc Term size.
 crdt_size({?PURE_AWSET_TYPE, CRDT}) -> crdt_size(CRDT);
